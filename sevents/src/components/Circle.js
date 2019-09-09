@@ -39,22 +39,20 @@ class Circle extends React.Component{
         super(props); 
         this.state = {
             color: "red",
-            radius: 50
+            radius: 50,
+            value: 50
         }
        
     }
     
     changeColor = () => {
         var color = '#' +  Math.random().toString(16).substr(-6);
-        console.log("change color");
-        console.log(color);
         this.setState({color:color});
     }
-    
-    changeSize = (size) => {
-        console.log("change size");
-        this.setState({radius: size}); 
+    changeSize = (size,value) => {
+        this.setState({radius:value}); 
     }
+
     
     
     render(){
@@ -63,11 +61,11 @@ class Circle extends React.Component{
             <Container maxWidth="sm">
                 <br></br>
                 <svg height="200" width="200">
-                    <circle cx="100" cy="100" r={"100"} fill={this.state.color} />
+                    <circle cx="100" cy="100" r={this.state.radius} fill={this.state.color} />
                 </svg>
                 <br></br><br></br>
                 <p>Ajustar tamaño</p>
-                <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={50} onChange={this.changeSize}/>
+                <PrettoSlider  valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={50} onChange={this.changeSize}/>
                 <br></br><br></br><br></br>
                 <Button variant="outlined" color="default" onClick={this.changeColor}>
                     Cambiar color
